@@ -1,0 +1,17 @@
+FROM golang:1.16-rc-alpine AS builder
+
+ARG CGO_ENABLED=0
+ARG GOOS=linux
+ARG GOARCH=amd64
+ARG GO111MODULE=on
+
+COPY . /src
+
+RUN cd /src &&\
+  go build -o /tmp/protoc-gen-go -mod=vendor ./vendor/github.com/golang/protobuf/protoc-gen-go
+
+FROM alpine:3.11.5
+
+RUN apk --update --no-cache add protobuf=3.11.2-r1
+
+COPY --from=builder /tmp/protoc-gen-go /usr/bin

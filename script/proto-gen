@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+ROOT=$(git rev-parse --show-toplevel)
+cd "${ROOT}"
+
+img="proto-gen-go"
+docker build -t $img -f Dockerfile.proto .
+
+
+docker run --rm \
+  -u $(id -u):$(id -g) \
+  -v ${ROOT}:/src \
+  -w /src \
+  $img \
+  protoc -I ./proto --go_out=plugins=grpc:internal/proto/gokvm proto/gokvm.proto

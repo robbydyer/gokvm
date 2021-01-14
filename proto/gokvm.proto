@@ -1,0 +1,12 @@
+syntax = "proto3";
+package gokvm;
+
+message MouseClickRequest {
+    string button = 1;
+    bool double = 2;
+}
+message MouseClickResponse {}
+
+service GoKvm {
+    rpc MouseClick(MouseClickRequest) returns (MouseClickResponse);
+}
