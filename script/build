@@ -2,15 +2,22 @@
 ROOT=$(git rev-parse --show-toplevel)
 cd "${ROOT}"
 
-image="golang:1.16-rc-alpine"
+#image="golang:1.16-rc-alpine"
+image="gokvmbuilder"
 
+cd "${ROOT}"
+go build -mod=vendor -o gokvm.osx ./cmd/gokvm/
+
+exit
+
+docker build -f Dockerfile.build -t "${image}" .
 docker run -t --rm \
   -u $(id -u):$(id -g) \
   -v ${ROOT}:/src \
   -w /src \
-  -e CGO_ENABLED=0 \
+  -e CGO_ENABLED=1 \
   -e GOOS=darwin \
   -e GOARCH=arm64 \
   -e GOCACHE="/src/.cache" \
-  golang:1.16-rc-alpine \
+  ${image} \
   go build -mod=vendor -o gokvm.osx ./cmd/gokvm/

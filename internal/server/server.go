@@ -15,6 +15,7 @@ type Server struct {
 	Log io.Writer
 	conn *grpc.ClientConn
 	client gokvmpb.GoKvmClient
+	mouseVisible bool
 }
 
 func (s *Server) ConnectClient(address string) error {
