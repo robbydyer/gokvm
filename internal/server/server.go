@@ -1,20 +1,23 @@
 package server
 
 import (
-	"net"
+	"context"
+	"fmt"
+	"io"
+	"runtime"
 
-	"google.golang.org/grpc"
 	"github.com/go-vgo/robotgo"
 	hook "github.com/robotn/gohook"
+	"google.golang.org/grpc"
 
 	gokvmpb "github.com/robbydyer/gokvm/internal/proto/gokvm"
 )
 
 // Server ...
 type Server struct {
-	Log io.Writer
-	conn *grpc.ClientConn
-	client gokvmpb.GoKvmClient
+	Log          io.Writer
+	conn         *grpc.ClientConn
+	client       gokvmpb.GoKvmClient
 	mouseVisible bool
 }
 
@@ -31,7 +34,25 @@ func (s *Server) ConnectClient(address string) error {
 
 	s.client = gokvmpb.NewGoKvmClient(s.conn)
 
-	return nil
+	resp, err := s.client.Hello(context.Background(), &gokvmpb.HelloRequest{})
+	if err != nil {
+		return err
+	}
+
+	_, _ = s.Log.Write([]byte(fmt.Sprintf("Client said '%s'\n", resp.Message)))
+
+	ev := hook.Start()
+	defer hook.End()
+
+	ctx := context.Background()
+	for e := range ev {
+		s.processEvent(ctx, e)
+	}
+
+	for {
+		runtime.Gosched()
+	}
+
 }
 
 func (s *Server) Shutdown() {
@@ -39,20 +60,36 @@ func (s *Server) Shutdown() {
 	robotgo.EventEnd()
 }
 
-func (s *Server) AddHooks() error {
-	robotgo.EventHook(hook.MouseDown, []string{"left"}, func(e hook.Event) {
-		req := &gokvmpb.MouseClickRequest{
-			Button: "left",
-			Double: false,
+func (s *Server) processEvent(ctx context.Context, e hook.Event) error {
+	if e.Kind == hook.MouseDown {
+		_, _ = s.Log.Write([]byte(fmt.Sprintf("HOOK: %v\n", e)))
+		req := &gokvmpb.MouseClickRequest{}
+		for k, v := range hook.MouseMap {
+			if e.Button == v {
+				req.Button = k
+				break
+			}
 		}
-		_, err := s.client.ClickMouse(context.Background(), req)
-		if err != nil {
-			_, _ = s.Log.Write([]byte(fmt.Sprintf("Left mouse click failed: %s", err.Error()))
+		if e.Clicks > 1 {
+			req.Double = true
 		}
-	})
+		_, err := s.client.MouseClick(ctx, req)
+		return err
+	}
 
-	e := robotgo.EventStart()
-	<-robotgo.EventProcess(e)
+	if e.Kind == hook.MouseWheel {
+		_, _ = s.Log.Write([]byte(fmt.Sprintf("HOOK: %v\n", e)))
+		req := &gokvmpb.MouseScrollRequest{
+			X:         e.Rotation,
+			Direction: "up",
+		}
+		if e.Rotation > 0 {
+			req.Direction = "down"
+		}
+		_, err := s.client.MouseScroll(ctx, req)
+
+		return err
+	}
 
 	return nil
 }

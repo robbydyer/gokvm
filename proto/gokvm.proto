@@ -1,6 +1,14 @@
 syntax = "proto3";
 package gokvm;
 
+message HelloRequest {
+    string ip = 1;
+}
+
+message HelloResponse {
+    string message = 1;
+}
+
 message MouseClickRequest {
     string button = 1;
     bool double = 2;
@@ -13,7 +21,15 @@ message MouseMoveRequest{
 }
 message MouseMoveResponse {}
 
+message MouseScrollRequest {
+    int32 x = 1;
+    string direction = 2;
+}
+message MouseScrollResponse{}
+
 service GoKvm {
+    rpc Hello(HelloRequest) returns (HelloResponse);
     rpc MouseClick(MouseClickRequest) returns (MouseClickResponse);
     rpc MouseMove(MouseMoveRequest) returns (MouseMoveResponse);
+    rpc MouseScroll(MouseScrollRequest) returns (MouseScrollResponse);
 }

@@ -8,11 +8,12 @@ import (
 
 func main() {
 	rootCmd := &cobra.Command{
-		Use: "gokvm",
+		Use:   "gokvm",
 		Short: "Software KVM",
 	}
 
 	rootCmd.AddCommand(newClientCmd())
+	rootCmd.AddCommand(newServerCmd())
 
 	if err := rootCmd.Execute(); err != nil {
 		panic(err)

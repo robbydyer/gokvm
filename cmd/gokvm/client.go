@@ -3,23 +3,24 @@ package main
 import (
 	"fmt"
 	"net"
+	"os"
 
-	"google.golang.org/grpc"
 	"github.com/spf13/cobra"
+	"google.golang.org/grpc"
 
-	gokvmpb "github.com/robbydyer/gokvm/internal/proto/gokvm"
 	"github.com/robbydyer/gokvm/internal/client"
+	gokvmpb "github.com/robbydyer/gokvm/internal/proto/gokvm"
 )
 
-type clientCmd struct {}
+type clientCmd struct{}
 
 func newClientCmd() *cobra.Command {
 	c := clientCmd{}
 
 	cmd := &cobra.Command{
-		Use: "client",
+		Use:   "client",
 		Short: "Client listening service",
-		RunE: c.client,
+		RunE:  c.client,
 	}
 
 	return cmd
@@ -31,7 +32,9 @@ func (c *clientCmd) client(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("failed to start net listener: %w", err)
 	}
 
-	s := client.Client{}
+	s := client.Client{
+		Log: os.Stdout,
+	}
 	grpcServer := grpc.NewServer()
 	gokvmpb.RegisterGoKvmServer(grpcServer, &s)
 
