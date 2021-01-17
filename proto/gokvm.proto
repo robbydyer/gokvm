@@ -7,19 +7,11 @@ message MouseClickRequest {
 }
 message MouseClickResponse {}
 
-message MouseMoveEvent{
-    int32 x = 1;
-    int32 y = 2;
-    int32 xrel = 3;
-    int32 yrel = 4;
-    uint32 state = 5;
-    uint32 which = 6;
-    uint32 window_id = 7;
-    uint32 event_type = 8;
+message MouseMoveRequest{
+    int32 xrel = 1;
+    int32 yrel = 2;
 }
-
-message MouseMoveRequest{}
-message MouseMoveResponse
+message MouseMoveResponse {}
 
 service GoKvm {
     rpc MouseClick(MouseClickRequest) returns (MouseClickResponse);

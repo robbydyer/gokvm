@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+
 ROOT=$(git rev-parse --show-toplevel)
 cd "${ROOT}"
 
@@ -6,7 +8,16 @@ cd "${ROOT}"
 image="gokvmbuilder"
 
 cd "${ROOT}"
-go build -mod=vendor -o gokvm.osx ./cmd/gokvm/
+
+if uname -m | grep x86_64; then
+  echo "--> Building for x86_64"
+  CGO_ENABLED=1 go build -mod=vendor -o gokvm.darwin_x86 ./cmd/gokvm/
+fi
+
+if uname -m | grep arm64; then
+  echo "--> Building for arm64"
+  CGO_ENABLED=1 go build -mod=vendor -o gokvm.darwin_arm ./cmd/gokvm/
+fi
 
 exit
 
