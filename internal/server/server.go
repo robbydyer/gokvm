@@ -67,7 +67,7 @@ func New(ctx context.Context, opts ...OptionFunc) (*Server, error) {
 	return s, nil
 }
 
-func (s *Server) ConnectClient(ctx context.Context, address string) (*client, error) {
+func (s *Server) ConnectClient(ctx context.Context, address string, location serverpb.Location) (*client, error) {
 	var thisClient *client
 
 	for _, c := range s.clients {
@@ -82,7 +82,8 @@ func (s *Server) ConnectClient(ctx context.Context, address string) (*client, er
 	}
 
 	thisClient = &client{
-		address: address,
+		address:  address,
+		location: location,
 	}
 	s.clients = append(s.clients, thisClient)
 
@@ -104,24 +105,43 @@ func (s *Server) ConnectClient(ctx context.Context, address string) (*client, er
 	return thisClient, nil
 }
 
-func (s *Server) connectNewClient(address string) error {
-
-}
-
 func (s *Server) Shutdown() {
 	hook.End()
-	for _, c := range s.conns {
-		c.Close()
+	for _, c := range s.clients {
+		c.grpcConn.Close()
 	}
 }
 
 func (s *Server) RegisterClient(ctx context.Context, req *serverpb.RegisterClientRequest) (*serverpb.RegisterClientResponse, error) {
-	if err := s.ConnectClient(fmt.Sprintf("%s:%d", req.Ip, req.Port)); err != nil {
+	c, err := s.ConnectClient(ctx, fmt.Sprintf("%s:%d", req.Ip, req.Port), req.Location)
+	if err != nil {
 		return &serverpb.RegisterClientResponse{}, err
 	}
 
 	// TODO: Remove after auto-activation is figured out
-	s.activeClient = fmt.Sprintf("%s:%d", req.Ip, req.Port)
+	c.isActive = true
 
 	return &serverpb.RegisterClientResponse{}, nil
+}
+
+func (s *Server) SetClientActive(ctx context.Context, req *serverpb.SetClientActiveRequest) (*serverpb.SetClientActiveResponse, error) {
+	found := false
+	for _, c := range s.clients {
+		if c.address == fmt.Sprintf("%s:%d", req.Ip, req.Port) {
+			found = true
+		}
+	}
+
+	if !found {
+		return &serverpb.SetClientActiveResponse{}, fmt.Errorf("client %s:%d does not exist", req.Ip, req.Port)
+	}
+
+	for _, c := range s.clients {
+		if c.address == fmt.Sprintf("%s:%d", req.Ip, req.Port) {
+			c.isActive = true
+		}
+		c.isActive = false
+	}
+
+	return &serverpb.SetClientActiveResponse{}, nil
 }

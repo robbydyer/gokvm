@@ -20,6 +20,7 @@ type Client struct {
 	Server           serverpb.ServerClient
 	InternalIPSubnet string
 	listenPort       int
+	ip               string
 }
 
 func New(listenPort int) (*Client, error) {
@@ -45,13 +46,13 @@ func (c *Client) ConnectServer(ctx context.Context, address string, relativeLoca
 
 	c.Server = serverpb.NewServerClient(conn)
 
-	ip, err := util.GetInternalIP(c.InternalIPSubnet)
+	c.ip, err = util.GetInternalIP(c.InternalIPSubnet)
 	if err != nil {
 		return err
 	}
 
 	c.Server.RegisterClient(ctx, &serverpb.RegisterClientRequest{
-		Ip:       ip,
+		Ip:       c.ip,
 		Port:     int32(c.listenPort),
 		Location: relativeLocation,
 	})

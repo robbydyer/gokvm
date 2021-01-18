@@ -15,6 +15,13 @@ message RegisterClientRequest {
 }
 message RegisterClientResponse{}
 
+message SetClientActiveRequest {
+    string ip = 1;
+    int32 port = 2;
+}
+message SetClientActiveResponse {}
+
 service Server {
     rpc RegisterClient(RegisterClientRequest) returns (RegisterClientResponse);
+    rpc SetClientActive(SetClientActiveRequest) returns (SetClientActiveResponse);
 }
