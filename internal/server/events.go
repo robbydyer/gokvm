@@ -8,6 +8,21 @@ import (
 )
 
 func (s *Server) processEvent(ctx context.Context, e hook.Event) {
+	if s.activeClient == "" {
+		go s.Log.Debugf("No active client, igoring event: %v", e)
+		return
+	}
+
+	activeClient, ok := s.clients[s.activeClient]
+	if !ok {
+		go s.Log.Errorf("active client is not connected, trying reconnect")
+		if err := s.ConnectClient(s.activeClient); err != nil {
+			go s.Log.Errorf("failed to connect to active client: %s", err.Error())
+			s.activeClient = ""
+			return
+		}
+	}
+
 	if e.Kind == hook.MouseDown {
 		s.Log.Debug("HOOK", e)
 		req := &clientpb.MouseClickRequest{}
@@ -20,15 +35,12 @@ func (s *Server) processEvent(ctx context.Context, e hook.Event) {
 		if e.Clicks > 1 {
 			req.Double = true
 		}
-		for _, c := range s.clients {
-			c := c
-			go func() {
-				_, err := c.MouseClick(ctx, req)
-				if err != nil {
-					s.Log.Errorf("MouseClick failed: %s", err.Error())
-				}
-			}()
+
+		_, err := activeClient.MouseClick(ctx, req)
+		if err != nil {
+			s.Log.Errorf("MouseClick failed: %s", err.Error())
 		}
+		return
 	}
 
 	if e.Kind == hook.MouseWheel {
@@ -40,15 +52,11 @@ func (s *Server) processEvent(ctx context.Context, e hook.Event) {
 		if e.Rotation > 0 {
 			req.Direction = "down"
 		}
-		for _, c := range s.clients {
-			c := c
-			go func() {
-				_, err := c.MouseScroll(ctx, req)
-				if err != nil {
-					s.Log.Errorf("MouseScroll failed: %s", err.Error())
-				}
-			}()
+		_, err := activeClient.MouseScroll(ctx, req)
+		if err != nil {
+			s.Log.Errorf("MouseScroll failed: %s", err.Error())
 		}
+		return
 	}
 
 	s.Log.Debugf("UNKNOWN HOOK: %v", e)
