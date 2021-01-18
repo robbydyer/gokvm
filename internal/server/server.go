@@ -7,6 +7,7 @@ import (
 	hook "github.com/robotn/gohook"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/connectivity"
 
 	gokvmpb "github.com/robbydyer/gokvm/internal/proto/gokvm"
 )
@@ -15,6 +16,7 @@ import (
 type Server struct {
 	Log          *log.Logger
 	ctx          context.Context
+	clientAddrs  []string
 	conns        []*grpc.ClientConn
 	clients      []gokvmpb.GoKvmClient
 	mouseVisible bool
@@ -57,9 +59,32 @@ func New(ctx context.Context, opts ...OptionFunc) (*Server, error) {
 	return s, nil
 }
 
+func (s *Server) CheckConnection(address string) (bool, error) {
+	for _, conn := range s.conns {
+		if conn.Target() == address {
+			if conn.GetState() == connectivity.Ready || conn.GetState() == connectivity.Connecting {
+				return true, nil
+			}
+
+			return false, nil
+		}
+	}
+
+	return false, nil
+}
+
 func (s *Server) ConnectClient(address string) error {
+	connected, err := s.CheckConnection(address)
+	if err != nil {
+		return err
+	}
+
+	if connected {
+		s.Log.Debug("Client already connected", address)
+		return nil
+	}
+
 	var conn *grpc.ClientConn
-	var err error
 
 	conn, err = grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {

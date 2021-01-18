@@ -27,7 +27,7 @@ message MouseScrollRequest {
 }
 message MouseScrollResponse{}
 
-service GoKvm {
+service Client {
     rpc Hello(HelloRequest) returns (HelloResponse);
     rpc MouseClick(MouseClickRequest) returns (MouseClickResponse);
     rpc MouseMove(MouseMoveRequest) returns (MouseMoveResponse);
