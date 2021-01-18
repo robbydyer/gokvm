@@ -2,14 +2,17 @@ package server
 
 import (
 	"context"
+	"fmt"
 	"os"
+	"time"
 
 	hook "github.com/robotn/gohook"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/connectivity"
 
-	gokvmpb "github.com/robbydyer/gokvm/internal/proto/gokvm"
+	clientpb "github.com/robbydyer/gokvm/internal/proto/client"
+	serverpb "github.com/robbydyer/gokvm/internal/proto/server"
 )
 
 // Server ...
@@ -18,7 +21,7 @@ type Server struct {
 	ctx          context.Context
 	clientAddrs  []string
 	conns        []*grpc.ClientConn
-	clients      []gokvmpb.GoKvmClient
+	clients      []clientpb.ClientClient
 	mouseVisible bool
 }
 
@@ -47,6 +50,13 @@ func New(ctx context.Context, opts ...OptionFunc) (*Server, error) {
 	}
 
 	s.Log.Info("Starting server")
+
+	go func() {
+		for _, addr := range s.clientAddrs {
+			_ = s.ConnectClient(addr)
+		}
+		time.Sleep(10 * time.Second)
+	}()
 
 	go func() {
 		ev := hook.Start()
@@ -84,6 +94,8 @@ func (s *Server) ConnectClient(address string) error {
 		return nil
 	}
 
+	s.clientAddrs = append(s.clientAddrs, address)
+
 	var conn *grpc.ClientConn
 
 	conn, err = grpc.Dial(address, grpc.WithInsecure())
@@ -93,10 +105,10 @@ func (s *Server) ConnectClient(address string) error {
 
 	s.conns = append(s.conns, conn)
 
-	client := gokvmpb.NewGoKvmClient(conn)
+	client := clientpb.NewClientClient(conn)
 	s.clients = append(s.clients, client)
 
-	resp, err := client.Hello(context.Background(), &gokvmpb.HelloRequest{})
+	resp, err := client.Hello(context.Background(), &clientpb.HelloRequest{})
 	if err != nil {
 		return err
 	}
@@ -113,42 +125,10 @@ func (s *Server) Shutdown() {
 	}
 }
 
-func (s *Server) processEvent(ctx context.Context, e hook.Event) error {
-	if e.Kind == hook.MouseDown {
-		s.Log.Debug("HOOK", e)
-		req := &gokvmpb.MouseClickRequest{}
-		for k, v := range hook.MouseMap {
-			if e.Button == v {
-				req.Button = k
-				break
-			}
-		}
-		if e.Clicks > 1 {
-			req.Double = true
-		}
-		for _, c := range s.clients {
-			_, err := c.MouseClick(ctx, req)
-			return err
-		}
+func (s *Server) RegisterClient(ctx context.Context, req *serverpb.RegisterClientRequest) (*serverpb.RegisterClientResponse, error) {
+	if err := s.ConnectClient(fmt.Sprintf("%s:%d", req.Ip, req.Port)); err != nil {
+		return &serverpb.RegisterClientResponse{}, err
 	}
 
-	if e.Kind == hook.MouseWheel {
-		s.Log.Debug("HOOK", e)
-		req := &gokvmpb.MouseScrollRequest{
-			X:         e.Rotation,
-			Direction: "up",
-		}
-		if e.Rotation > 0 {
-			req.Direction = "down"
-		}
-		for _, c := range s.clients {
-			_, err := c.MouseScroll(ctx, req)
-
-			return err
-		}
-	}
-
-	s.Log.Debug("UNKNOWN HOOK", e)
-
-	return nil
+	return &serverpb.RegisterClientResponse{}, nil
 }

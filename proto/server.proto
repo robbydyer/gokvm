@@ -1,0 +1,20 @@
+syntax = "proto3";
+package gokvm;
+
+enum Location {
+    RIGHT = 0;
+    LEFT = 1;
+    UP = 2;
+    DOWN = 3;
+}
+
+message RegisterClientRequest {
+    string ip = 1;
+    int32 port = 2;
+    Location location = 3;
+}
+message RegisterClientResponse{}
+
+service Server {
+    rpc RegisterClient(RegisterClientRequest) returns (RegisterClientResponse);
+}

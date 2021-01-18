@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0
 // 	protoc        v3.11.2
-// source: gokvm.proto
+// source: client.proto
 
 package gokvm
 
@@ -40,7 +40,7 @@ type HelloRequest struct {
 func (x *HelloRequest) Reset() {
 	*x = HelloRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_gokvm_proto_msgTypes[0]
+		mi := &file_client_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -53,7 +53,7 @@ func (x *HelloRequest) String() string {
 func (*HelloRequest) ProtoMessage() {}
 
 func (x *HelloRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_gokvm_proto_msgTypes[0]
+	mi := &file_client_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -66,7 +66,7 @@ func (x *HelloRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HelloRequest.ProtoReflect.Descriptor instead.
 func (*HelloRequest) Descriptor() ([]byte, []int) {
-	return file_gokvm_proto_rawDescGZIP(), []int{0}
+	return file_client_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *HelloRequest) GetIp() string {
@@ -87,7 +87,7 @@ type HelloResponse struct {
 func (x *HelloResponse) Reset() {
 	*x = HelloResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_gokvm_proto_msgTypes[1]
+		mi := &file_client_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -100,7 +100,7 @@ func (x *HelloResponse) String() string {
 func (*HelloResponse) ProtoMessage() {}
 
 func (x *HelloResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_gokvm_proto_msgTypes[1]
+	mi := &file_client_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113,7 +113,7 @@ func (x *HelloResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HelloResponse.ProtoReflect.Descriptor instead.
 func (*HelloResponse) Descriptor() ([]byte, []int) {
-	return file_gokvm_proto_rawDescGZIP(), []int{1}
+	return file_client_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *HelloResponse) GetMessage() string {
@@ -135,7 +135,7 @@ type MouseClickRequest struct {
 func (x *MouseClickRequest) Reset() {
 	*x = MouseClickRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_gokvm_proto_msgTypes[2]
+		mi := &file_client_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -148,7 +148,7 @@ func (x *MouseClickRequest) String() string {
 func (*MouseClickRequest) ProtoMessage() {}
 
 func (x *MouseClickRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_gokvm_proto_msgTypes[2]
+	mi := &file_client_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -161,7 +161,7 @@ func (x *MouseClickRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MouseClickRequest.ProtoReflect.Descriptor instead.
 func (*MouseClickRequest) Descriptor() ([]byte, []int) {
-	return file_gokvm_proto_rawDescGZIP(), []int{2}
+	return file_client_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *MouseClickRequest) GetButton() string {
@@ -187,7 +187,7 @@ type MouseClickResponse struct {
 func (x *MouseClickResponse) Reset() {
 	*x = MouseClickResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_gokvm_proto_msgTypes[3]
+		mi := &file_client_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -200,7 +200,7 @@ func (x *MouseClickResponse) String() string {
 func (*MouseClickResponse) ProtoMessage() {}
 
 func (x *MouseClickResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_gokvm_proto_msgTypes[3]
+	mi := &file_client_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -213,7 +213,7 @@ func (x *MouseClickResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MouseClickResponse.ProtoReflect.Descriptor instead.
 func (*MouseClickResponse) Descriptor() ([]byte, []int) {
-	return file_gokvm_proto_rawDescGZIP(), []int{3}
+	return file_client_proto_rawDescGZIP(), []int{3}
 }
 
 type MouseMoveRequest struct {
@@ -228,7 +228,7 @@ type MouseMoveRequest struct {
 func (x *MouseMoveRequest) Reset() {
 	*x = MouseMoveRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_gokvm_proto_msgTypes[4]
+		mi := &file_client_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -241,7 +241,7 @@ func (x *MouseMoveRequest) String() string {
 func (*MouseMoveRequest) ProtoMessage() {}
 
 func (x *MouseMoveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_gokvm_proto_msgTypes[4]
+	mi := &file_client_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -254,7 +254,7 @@ func (x *MouseMoveRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MouseMoveRequest.ProtoReflect.Descriptor instead.
 func (*MouseMoveRequest) Descriptor() ([]byte, []int) {
-	return file_gokvm_proto_rawDescGZIP(), []int{4}
+	return file_client_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *MouseMoveRequest) GetXrel() int32 {
@@ -280,7 +280,7 @@ type MouseMoveResponse struct {
 func (x *MouseMoveResponse) Reset() {
 	*x = MouseMoveResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_gokvm_proto_msgTypes[5]
+		mi := &file_client_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -293,7 +293,7 @@ func (x *MouseMoveResponse) String() string {
 func (*MouseMoveResponse) ProtoMessage() {}
 
 func (x *MouseMoveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_gokvm_proto_msgTypes[5]
+	mi := &file_client_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -306,7 +306,7 @@ func (x *MouseMoveResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MouseMoveResponse.ProtoReflect.Descriptor instead.
 func (*MouseMoveResponse) Descriptor() ([]byte, []int) {
-	return file_gokvm_proto_rawDescGZIP(), []int{5}
+	return file_client_proto_rawDescGZIP(), []int{5}
 }
 
 type MouseScrollRequest struct {
@@ -321,7 +321,7 @@ type MouseScrollRequest struct {
 func (x *MouseScrollRequest) Reset() {
 	*x = MouseScrollRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_gokvm_proto_msgTypes[6]
+		mi := &file_client_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -334,7 +334,7 @@ func (x *MouseScrollRequest) String() string {
 func (*MouseScrollRequest) ProtoMessage() {}
 
 func (x *MouseScrollRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_gokvm_proto_msgTypes[6]
+	mi := &file_client_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -347,7 +347,7 @@ func (x *MouseScrollRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MouseScrollRequest.ProtoReflect.Descriptor instead.
 func (*MouseScrollRequest) Descriptor() ([]byte, []int) {
-	return file_gokvm_proto_rawDescGZIP(), []int{6}
+	return file_client_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *MouseScrollRequest) GetX() int32 {
@@ -373,7 +373,7 @@ type MouseScrollResponse struct {
 func (x *MouseScrollResponse) Reset() {
 	*x = MouseScrollResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_gokvm_proto_msgTypes[7]
+		mi := &file_client_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -386,7 +386,7 @@ func (x *MouseScrollResponse) String() string {
 func (*MouseScrollResponse) ProtoMessage() {}
 
 func (x *MouseScrollResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_gokvm_proto_msgTypes[7]
+	mi := &file_client_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -399,68 +399,68 @@ func (x *MouseScrollResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MouseScrollResponse.ProtoReflect.Descriptor instead.
 func (*MouseScrollResponse) Descriptor() ([]byte, []int) {
-	return file_gokvm_proto_rawDescGZIP(), []int{7}
+	return file_client_proto_rawDescGZIP(), []int{7}
 }
 
-var File_gokvm_proto protoreflect.FileDescriptor
+var File_client_proto protoreflect.FileDescriptor
 
-var file_gokvm_proto_rawDesc = []byte{
-	0x0a, 0x0b, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x67,
-	0x6f, 0x6b, 0x76, 0x6d, 0x22, 0x1e, 0x0a, 0x0c, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x02, 0x69, 0x70, 0x22, 0x29, 0x0a, 0x0d, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22,
-	0x43, 0x0a, 0x11, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x43, 0x6c, 0x69, 0x63, 0x6b, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x62, 0x75, 0x74, 0x74, 0x6f, 0x6e, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x62, 0x75, 0x74, 0x74, 0x6f, 0x6e, 0x12, 0x16, 0x0a, 0x06,
-	0x64, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x64, 0x6f,
-	0x75, 0x62, 0x6c, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x43, 0x6c, 0x69,
-	0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x3a, 0x0a, 0x10, 0x4d, 0x6f,
-	0x75, 0x73, 0x65, 0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12,
-	0x0a, 0x04, 0x78, 0x72, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x78, 0x72,
-	0x65, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x79, 0x72, 0x65, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05,
-	0x52, 0x04, 0x79, 0x72, 0x65, 0x6c, 0x22, 0x13, 0x0a, 0x11, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x4d,
-	0x6f, 0x76, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x40, 0x0a, 0x12, 0x4d,
+var file_client_proto_rawDesc = []byte{
+	0x0a, 0x0c, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05,
+	0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x22, 0x1e, 0x0a, 0x0c, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x02, 0x69, 0x70, 0x22, 0x29, 0x0a, 0x0d, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x22, 0x43, 0x0a, 0x11, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x43, 0x6c, 0x69, 0x63, 0x6b, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x62, 0x75, 0x74, 0x74, 0x6f, 0x6e, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x62, 0x75, 0x74, 0x74, 0x6f, 0x6e, 0x12, 0x16, 0x0a,
+	0x06, 0x64, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x64,
+	0x6f, 0x75, 0x62, 0x6c, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x43, 0x6c,
+	0x69, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x3a, 0x0a, 0x10, 0x4d,
+	0x6f, 0x75, 0x73, 0x65, 0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x12, 0x0a, 0x04, 0x78, 0x72, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x78,
+	0x72, 0x65, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x79, 0x72, 0x65, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x04, 0x79, 0x72, 0x65, 0x6c, 0x22, 0x13, 0x0a, 0x11, 0x4d, 0x6f, 0x75, 0x73, 0x65,
+	0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x40, 0x0a, 0x12,
+	0x4d, 0x6f, 0x75, 0x73, 0x65, 0x53, 0x63, 0x72, 0x6f, 0x6c, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x0c, 0x0a, 0x01, 0x78, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x01, 0x78,
+	0x12, 0x1c, 0x0a, 0x09, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x15,
+	0x0a, 0x13, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x53, 0x63, 0x72, 0x6f, 0x6c, 0x6c, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x85, 0x02, 0x0a, 0x06, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74,
+	0x12, 0x32, 0x0a, 0x05, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x12, 0x13, 0x2e, 0x67, 0x6f, 0x6b, 0x76,
+	0x6d, 0x2e, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14,
+	0x2e, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a, 0x0a, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x43, 0x6c, 0x69,
+	0x63, 0x6b, 0x12, 0x18, 0x2e, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75, 0x73, 0x65,
+	0x43, 0x6c, 0x69, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x67,
+	0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x43, 0x6c, 0x69, 0x63, 0x6b, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3e, 0x0a, 0x09, 0x4d, 0x6f, 0x75, 0x73, 0x65,
+	0x4d, 0x6f, 0x76, 0x65, 0x12, 0x17, 0x2e, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75,
+	0x73, 0x65, 0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e,
+	0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x4d, 0x6f, 0x76, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0b, 0x4d, 0x6f, 0x75, 0x73, 0x65,
+	0x53, 0x63, 0x72, 0x6f, 0x6c, 0x6c, 0x12, 0x19, 0x2e, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x4d,
 	0x6f, 0x75, 0x73, 0x65, 0x53, 0x63, 0x72, 0x6f, 0x6c, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x0c, 0x0a, 0x01, 0x78, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x01, 0x78, 0x12,
-	0x1c, 0x0a, 0x09, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x09, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x15, 0x0a,
-	0x13, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x53, 0x63, 0x72, 0x6f, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x32, 0x84, 0x02, 0x0a, 0x05, 0x47, 0x6f, 0x4b, 0x76, 0x6d, 0x12, 0x32,
-	0x0a, 0x05, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x12, 0x13, 0x2e, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e,
-	0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x67,
-	0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x41, 0x0a, 0x0a, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x43, 0x6c, 0x69, 0x63, 0x6b,
-	0x12, 0x18, 0x2e, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x43, 0x6c,
-	0x69, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x67, 0x6f, 0x6b,
-	0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x43, 0x6c, 0x69, 0x63, 0x6b, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3e, 0x0a, 0x09, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x4d, 0x6f,
-	0x76, 0x65, 0x12, 0x17, 0x2e, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75, 0x73, 0x65,
-	0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x67, 0x6f,
-	0x6b, 0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0b, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x53, 0x63,
-	0x72, 0x6f, 0x6c, 0x6c, 0x12, 0x19, 0x2e, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75,
-	0x73, 0x65, 0x53, 0x63, 0x72, 0x6f, 0x6c, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x1a, 0x2e, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x53, 0x63, 0x72,
-	0x6f, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x74, 0x1a, 0x1a, 0x2e, 0x67, 0x6f, 0x6b, 0x76, 0x6d, 0x2e, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x53,
+	0x63, 0x72, 0x6f, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_gokvm_proto_rawDescOnce sync.Once
-	file_gokvm_proto_rawDescData = file_gokvm_proto_rawDesc
+	file_client_proto_rawDescOnce sync.Once
+	file_client_proto_rawDescData = file_client_proto_rawDesc
 )
 
-func file_gokvm_proto_rawDescGZIP() []byte {
-	file_gokvm_proto_rawDescOnce.Do(func() {
-		file_gokvm_proto_rawDescData = protoimpl.X.CompressGZIP(file_gokvm_proto_rawDescData)
+func file_client_proto_rawDescGZIP() []byte {
+	file_client_proto_rawDescOnce.Do(func() {
+		file_client_proto_rawDescData = protoimpl.X.CompressGZIP(file_client_proto_rawDescData)
 	})
-	return file_gokvm_proto_rawDescData
+	return file_client_proto_rawDescData
 }
 
-var file_gokvm_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
-var file_gokvm_proto_goTypes = []interface{}{
+var file_client_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_client_proto_goTypes = []interface{}{
 	(*HelloRequest)(nil),        // 0: gokvm.HelloRequest
 	(*HelloResponse)(nil),       // 1: gokvm.HelloResponse
 	(*MouseClickRequest)(nil),   // 2: gokvm.MouseClickRequest
@@ -470,15 +470,15 @@ var file_gokvm_proto_goTypes = []interface{}{
 	(*MouseScrollRequest)(nil),  // 6: gokvm.MouseScrollRequest
 	(*MouseScrollResponse)(nil), // 7: gokvm.MouseScrollResponse
 }
-var file_gokvm_proto_depIdxs = []int32{
-	0, // 0: gokvm.GoKvm.Hello:input_type -> gokvm.HelloRequest
-	2, // 1: gokvm.GoKvm.MouseClick:input_type -> gokvm.MouseClickRequest
-	4, // 2: gokvm.GoKvm.MouseMove:input_type -> gokvm.MouseMoveRequest
-	6, // 3: gokvm.GoKvm.MouseScroll:input_type -> gokvm.MouseScrollRequest
-	1, // 4: gokvm.GoKvm.Hello:output_type -> gokvm.HelloResponse
-	3, // 5: gokvm.GoKvm.MouseClick:output_type -> gokvm.MouseClickResponse
-	5, // 6: gokvm.GoKvm.MouseMove:output_type -> gokvm.MouseMoveResponse
-	7, // 7: gokvm.GoKvm.MouseScroll:output_type -> gokvm.MouseScrollResponse
+var file_client_proto_depIdxs = []int32{
+	0, // 0: gokvm.Client.Hello:input_type -> gokvm.HelloRequest
+	2, // 1: gokvm.Client.MouseClick:input_type -> gokvm.MouseClickRequest
+	4, // 2: gokvm.Client.MouseMove:input_type -> gokvm.MouseMoveRequest
+	6, // 3: gokvm.Client.MouseScroll:input_type -> gokvm.MouseScrollRequest
+	1, // 4: gokvm.Client.Hello:output_type -> gokvm.HelloResponse
+	3, // 5: gokvm.Client.MouseClick:output_type -> gokvm.MouseClickResponse
+	5, // 6: gokvm.Client.MouseMove:output_type -> gokvm.MouseMoveResponse
+	7, // 7: gokvm.Client.MouseScroll:output_type -> gokvm.MouseScrollResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -486,13 +486,13 @@ var file_gokvm_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_gokvm_proto_init() }
-func file_gokvm_proto_init() {
-	if File_gokvm_proto != nil {
+func init() { file_client_proto_init() }
+func file_client_proto_init() {
+	if File_client_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_gokvm_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_client_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*HelloRequest); i {
 			case 0:
 				return &v.state
@@ -504,7 +504,7 @@ func file_gokvm_proto_init() {
 				return nil
 			}
 		}
-		file_gokvm_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_client_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*HelloResponse); i {
 			case 0:
 				return &v.state
@@ -516,7 +516,7 @@ func file_gokvm_proto_init() {
 				return nil
 			}
 		}
-		file_gokvm_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_client_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MouseClickRequest); i {
 			case 0:
 				return &v.state
@@ -528,7 +528,7 @@ func file_gokvm_proto_init() {
 				return nil
 			}
 		}
-		file_gokvm_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_client_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MouseClickResponse); i {
 			case 0:
 				return &v.state
@@ -540,7 +540,7 @@ func file_gokvm_proto_init() {
 				return nil
 			}
 		}
-		file_gokvm_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_client_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MouseMoveRequest); i {
 			case 0:
 				return &v.state
@@ -552,7 +552,7 @@ func file_gokvm_proto_init() {
 				return nil
 			}
 		}
-		file_gokvm_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_client_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MouseMoveResponse); i {
 			case 0:
 				return &v.state
@@ -564,7 +564,7 @@ func file_gokvm_proto_init() {
 				return nil
 			}
 		}
-		file_gokvm_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_client_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MouseScrollRequest); i {
 			case 0:
 				return &v.state
@@ -576,7 +576,7 @@ func file_gokvm_proto_init() {
 				return nil
 			}
 		}
-		file_gokvm_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_client_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MouseScrollResponse); i {
 			case 0:
 				return &v.state
@@ -593,20 +593,20 @@ func file_gokvm_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_gokvm_proto_rawDesc,
+			RawDescriptor: file_client_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_gokvm_proto_goTypes,
-		DependencyIndexes: file_gokvm_proto_depIdxs,
-		MessageInfos:      file_gokvm_proto_msgTypes,
+		GoTypes:           file_client_proto_goTypes,
+		DependencyIndexes: file_client_proto_depIdxs,
+		MessageInfos:      file_client_proto_msgTypes,
 	}.Build()
-	File_gokvm_proto = out.File
-	file_gokvm_proto_rawDesc = nil
-	file_gokvm_proto_goTypes = nil
-	file_gokvm_proto_depIdxs = nil
+	File_client_proto = out.File
+	file_client_proto_rawDesc = nil
+	file_client_proto_goTypes = nil
+	file_client_proto_depIdxs = nil
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -617,182 +617,182 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// GoKvmClient is the client API for GoKvm service.
+// ClientClient is the client API for Client service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type GoKvmClient interface {
+type ClientClient interface {
 	Hello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error)
 	MouseClick(ctx context.Context, in *MouseClickRequest, opts ...grpc.CallOption) (*MouseClickResponse, error)
 	MouseMove(ctx context.Context, in *MouseMoveRequest, opts ...grpc.CallOption) (*MouseMoveResponse, error)
 	MouseScroll(ctx context.Context, in *MouseScrollRequest, opts ...grpc.CallOption) (*MouseScrollResponse, error)
 }
 
-type goKvmClient struct {
+type clientClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGoKvmClient(cc grpc.ClientConnInterface) GoKvmClient {
-	return &goKvmClient{cc}
+func NewClientClient(cc grpc.ClientConnInterface) ClientClient {
+	return &clientClient{cc}
 }
 
-func (c *goKvmClient) Hello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error) {
+func (c *clientClient) Hello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error) {
 	out := new(HelloResponse)
-	err := c.cc.Invoke(ctx, "/gokvm.GoKvm/Hello", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gokvm.Client/Hello", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *goKvmClient) MouseClick(ctx context.Context, in *MouseClickRequest, opts ...grpc.CallOption) (*MouseClickResponse, error) {
+func (c *clientClient) MouseClick(ctx context.Context, in *MouseClickRequest, opts ...grpc.CallOption) (*MouseClickResponse, error) {
 	out := new(MouseClickResponse)
-	err := c.cc.Invoke(ctx, "/gokvm.GoKvm/MouseClick", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gokvm.Client/MouseClick", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *goKvmClient) MouseMove(ctx context.Context, in *MouseMoveRequest, opts ...grpc.CallOption) (*MouseMoveResponse, error) {
+func (c *clientClient) MouseMove(ctx context.Context, in *MouseMoveRequest, opts ...grpc.CallOption) (*MouseMoveResponse, error) {
 	out := new(MouseMoveResponse)
-	err := c.cc.Invoke(ctx, "/gokvm.GoKvm/MouseMove", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gokvm.Client/MouseMove", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *goKvmClient) MouseScroll(ctx context.Context, in *MouseScrollRequest, opts ...grpc.CallOption) (*MouseScrollResponse, error) {
+func (c *clientClient) MouseScroll(ctx context.Context, in *MouseScrollRequest, opts ...grpc.CallOption) (*MouseScrollResponse, error) {
 	out := new(MouseScrollResponse)
-	err := c.cc.Invoke(ctx, "/gokvm.GoKvm/MouseScroll", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gokvm.Client/MouseScroll", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GoKvmServer is the server API for GoKvm service.
-type GoKvmServer interface {
+// ClientServer is the server API for Client service.
+type ClientServer interface {
 	Hello(context.Context, *HelloRequest) (*HelloResponse, error)
 	MouseClick(context.Context, *MouseClickRequest) (*MouseClickResponse, error)
 	MouseMove(context.Context, *MouseMoveRequest) (*MouseMoveResponse, error)
 	MouseScroll(context.Context, *MouseScrollRequest) (*MouseScrollResponse, error)
 }
 
-// UnimplementedGoKvmServer can be embedded to have forward compatible implementations.
-type UnimplementedGoKvmServer struct {
+// UnimplementedClientServer can be embedded to have forward compatible implementations.
+type UnimplementedClientServer struct {
 }
 
-func (*UnimplementedGoKvmServer) Hello(context.Context, *HelloRequest) (*HelloResponse, error) {
+func (*UnimplementedClientServer) Hello(context.Context, *HelloRequest) (*HelloResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Hello not implemented")
 }
-func (*UnimplementedGoKvmServer) MouseClick(context.Context, *MouseClickRequest) (*MouseClickResponse, error) {
+func (*UnimplementedClientServer) MouseClick(context.Context, *MouseClickRequest) (*MouseClickResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MouseClick not implemented")
 }
-func (*UnimplementedGoKvmServer) MouseMove(context.Context, *MouseMoveRequest) (*MouseMoveResponse, error) {
+func (*UnimplementedClientServer) MouseMove(context.Context, *MouseMoveRequest) (*MouseMoveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MouseMove not implemented")
 }
-func (*UnimplementedGoKvmServer) MouseScroll(context.Context, *MouseScrollRequest) (*MouseScrollResponse, error) {
+func (*UnimplementedClientServer) MouseScroll(context.Context, *MouseScrollRequest) (*MouseScrollResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MouseScroll not implemented")
 }
 
-func RegisterGoKvmServer(s *grpc.Server, srv GoKvmServer) {
-	s.RegisterService(&_GoKvm_serviceDesc, srv)
+func RegisterClientServer(s *grpc.Server, srv ClientServer) {
+	s.RegisterService(&_Client_serviceDesc, srv)
 }
 
-func _GoKvm_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Client_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(HelloRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GoKvmServer).Hello(ctx, in)
+		return srv.(ClientServer).Hello(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gokvm.GoKvm/Hello",
+		FullMethod: "/gokvm.Client/Hello",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GoKvmServer).Hello(ctx, req.(*HelloRequest))
+		return srv.(ClientServer).Hello(ctx, req.(*HelloRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GoKvm_MouseClick_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Client_MouseClick_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MouseClickRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GoKvmServer).MouseClick(ctx, in)
+		return srv.(ClientServer).MouseClick(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gokvm.GoKvm/MouseClick",
+		FullMethod: "/gokvm.Client/MouseClick",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GoKvmServer).MouseClick(ctx, req.(*MouseClickRequest))
+		return srv.(ClientServer).MouseClick(ctx, req.(*MouseClickRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GoKvm_MouseMove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Client_MouseMove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MouseMoveRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GoKvmServer).MouseMove(ctx, in)
+		return srv.(ClientServer).MouseMove(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gokvm.GoKvm/MouseMove",
+		FullMethod: "/gokvm.Client/MouseMove",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GoKvmServer).MouseMove(ctx, req.(*MouseMoveRequest))
+		return srv.(ClientServer).MouseMove(ctx, req.(*MouseMoveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GoKvm_MouseScroll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Client_MouseScroll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MouseScrollRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GoKvmServer).MouseScroll(ctx, in)
+		return srv.(ClientServer).MouseScroll(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gokvm.GoKvm/MouseScroll",
+		FullMethod: "/gokvm.Client/MouseScroll",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GoKvmServer).MouseScroll(ctx, req.(*MouseScrollRequest))
+		return srv.(ClientServer).MouseScroll(ctx, req.(*MouseScrollRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _GoKvm_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "gokvm.GoKvm",
-	HandlerType: (*GoKvmServer)(nil),
+var _Client_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "gokvm.Client",
+	HandlerType: (*ClientServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Hello",
-			Handler:    _GoKvm_Hello_Handler,
+			Handler:    _Client_Hello_Handler,
 		},
 		{
 			MethodName: "MouseClick",
-			Handler:    _GoKvm_MouseClick_Handler,
+			Handler:    _Client_MouseClick_Handler,
 		},
 		{
 			MethodName: "MouseMove",
-			Handler:    _GoKvm_MouseMove_Handler,
+			Handler:    _Client_MouseMove_Handler,
 		},
 		{
 			MethodName: "MouseScroll",
-			Handler:    _GoKvm_MouseScroll_Handler,
+			Handler:    _Client_MouseScroll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "gokvm.proto",
+	Metadata: "client.proto",
 }
