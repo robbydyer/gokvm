@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"net"
 	"os"
@@ -16,12 +15,15 @@ import (
 )
 
 type serverCmd struct {
-	port int
-	udp  bool
+	rArgs *rootArgs
+	port  int
+	udp   bool
 }
 
-func newServerCmd() *cobra.Command {
-	c := serverCmd{}
+func newServerCmd(args *rootArgs) *cobra.Command {
+	c := serverCmd{
+		rArgs: args,
+	}
 
 	cmd := &cobra.Command{
 		Use:   "server",
@@ -46,12 +48,16 @@ func (c *serverCmd) server(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("failed to start net listener: %w", err)
 	}
 
-	s, err := server.New(context.Background(),
-		server.WithLogLevel(log.DebugLevel),
-	)
+	s, err := server.New()
 	if err != nil {
 		return err
 	}
+
+	lvl, err := log.ParseLevel(c.rArgs.logLevel)
+	if err != nil {
+		return err
+	}
+	s.Log.Level = lvl
 
 	grpcServer := grpc.NewServer()
 	serverpb.RegisterServerServer(grpcServer, s)
@@ -60,11 +66,11 @@ func (c *serverCmd) server(cmd *cobra.Command, args []string) error {
 	signal.Notify(ch, os.Interrupt)
 	go func() {
 		<-ch
-		s.Log.Info("Shutting down server")
 		s.Shutdown()
 		grpcServer.GracefulStop()
 	}()
 
+	s.Log.Info("Starting server")
 	if err := grpcServer.Serve(l); err != nil {
 		panic(err)
 	}

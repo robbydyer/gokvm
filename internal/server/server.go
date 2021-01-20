@@ -3,7 +3,6 @@ package server
 import (
 	"context"
 	"fmt"
-	"os"
 
 	hook "github.com/robotn/gohook"
 	log "github.com/sirupsen/logrus"
@@ -17,6 +16,7 @@ import (
 type Server struct {
 	Log          *log.Logger
 	ctx          context.Context
+	ctxCancel    context.CancelFunc
 	clients      []*client
 	activeClient string
 	mouseVisible bool
@@ -39,13 +39,13 @@ func WithLogLevel(level log.Level) OptionFunc {
 	}
 }
 
-func New(ctx context.Context, opts ...OptionFunc) (*Server, error) {
+func New(opts ...OptionFunc) (*Server, error) {
+	ctx, cancel := context.WithCancel(context.Background())
+	l := log.New()
 	s := &Server{
-		Log: &log.Logger{
-			Out:   os.Stderr,
-			Level: log.DebugLevel,
-		},
-		ctx: ctx,
+		Log:       l,
+		ctx:       ctx,
+		ctxCancel: cancel,
 	}
 
 	for _, f := range opts {
@@ -53,8 +53,6 @@ func New(ctx context.Context, opts ...OptionFunc) (*Server, error) {
 			return nil, err
 		}
 	}
-
-	s.Log.Info("Starting server")
 
 	go func() {
 		ev := hook.Start()
@@ -107,12 +105,14 @@ func (s *Server) ConnectClient(ctx context.Context, address string, location ser
 
 func (s *Server) Shutdown() {
 	hook.End()
+	s.ctxCancel()
 	for _, c := range s.clients {
 		c.grpcConn.Close()
 	}
 }
 
 func (s *Server) RegisterClient(ctx context.Context, req *serverpb.RegisterClientRequest) (*serverpb.RegisterClientResponse, error) {
+	s.Log.Infof("Registering new client '%s:%d'", req.Ip, req.Port)
 	c, err := s.ConnectClient(ctx, fmt.Sprintf("%s:%d", req.Ip, req.Port), req.Location)
 	if err != nil {
 		return &serverpb.RegisterClientResponse{}, err

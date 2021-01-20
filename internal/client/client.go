@@ -2,7 +2,6 @@ package client
 
 import (
 	"context"
-	"os"
 
 	"github.com/go-vgo/robotgo"
 	log "github.com/sirupsen/logrus"
@@ -25,11 +24,8 @@ type Client struct {
 
 func New(listenPort int) (*Client, error) {
 	c := &Client{
-		listenPort: listenPort,
-		Log: &log.Logger{
-			Out:   os.Stderr,
-			Level: log.InfoLevel,
-		},
+		listenPort:       listenPort,
+		Log:              log.New(),
 		InternalIPSubnet: "192.168.1",
 	}
 
@@ -37,6 +33,8 @@ func New(listenPort int) (*Client, error) {
 }
 
 func (c *Client) ConnectServer(ctx context.Context, address string, relativeLocation serverpb.Location) error {
+	c.Log.Info("Attempting to register to server %s", address)
+
 	var conn *grpc.ClientConn
 
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
@@ -51,13 +49,17 @@ func (c *Client) ConnectServer(ctx context.Context, address string, relativeLoca
 		return err
 	}
 
-	c.Server.RegisterClient(ctx, &serverpb.RegisterClientRequest{
+	req := &serverpb.RegisterClientRequest{
 		Ip:       c.ip,
 		Port:     int32(c.listenPort),
 		Location: relativeLocation,
-	})
+	}
 
-	return nil
+	c.Log.Infof("Registering to server: %v", req)
+
+	_, err = c.Server.RegisterClient(ctx, req)
+
+	return err
 }
 
 func Shutdown() {

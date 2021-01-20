@@ -16,12 +16,38 @@ func (s *Server) processEvent(ctx context.Context, e hook.Event) {
 	}
 
 	if activeClient == nil {
-		s.Log.Info("No active client, ignoring event")
+		s.Log.Debug("No active client, ignoring event")
 		s.Log.Debugf("Ignored event: %v", e)
+
+		return
+	}
+
+	if activeClient.clientConn == nil {
+		s.Log.Warnf("active client '%s' is missing connection", activeClient.address)
+
+		return
+	}
+
+	if e.Kind == hook.MouseMove {
+	}
+
+	if e.Kind == hook.MouseWheel {
+		s.Log.Warnf("HOOK", e)
+		req := &clientpb.MouseScrollRequest{
+			X:         e.Rotation,
+			Direction: "up",
+		}
+		if e.Rotation > 0 {
+			req.Direction = "down"
+		}
+		_, err := activeClient.clientConn.MouseScroll(ctx, req)
+		if err != nil {
+			s.Log.Errorf("MouseScroll failed: %s", err.Error())
+		}
+		return
 	}
 
 	if e.Kind == hook.MouseDown {
-		s.Log.Debug("HOOK", e)
 		req := &clientpb.MouseClickRequest{}
 		for k, v := range hook.MouseMap {
 			if e.Button == v {
@@ -36,22 +62,6 @@ func (s *Server) processEvent(ctx context.Context, e hook.Event) {
 		_, err := activeClient.clientConn.MouseClick(ctx, req)
 		if err != nil {
 			s.Log.Errorf("MouseClick failed: %s", err.Error())
-		}
-		return
-	}
-
-	if e.Kind == hook.MouseWheel {
-		s.Log.Debug("HOOK", e)
-		req := &clientpb.MouseScrollRequest{
-			X:         e.Rotation,
-			Direction: "up",
-		}
-		if e.Rotation > 0 {
-			req.Direction = "down"
-		}
-		_, err := activeClient.clientConn.MouseScroll(ctx, req)
-		if err != nil {
-			s.Log.Errorf("MouseScroll failed: %s", err.Error())
 		}
 		return
 	}

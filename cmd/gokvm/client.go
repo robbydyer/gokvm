@@ -18,6 +18,7 @@ import (
 )
 
 type clientCmd struct {
+	rArgs      *rootArgs
 	server     string
 	scrollOnly bool
 	port       int
@@ -25,8 +26,10 @@ type clientCmd struct {
 	location   string
 }
 
-func newClientCmd() *cobra.Command {
-	c := clientCmd{}
+func newClientCmd(args *rootArgs) *cobra.Command {
+	c := clientCmd{
+		rArgs: args,
+	}
 
 	cmd := &cobra.Command{
 		Use:   "client",
@@ -40,6 +43,7 @@ func newClientCmd() *cobra.Command {
 	f.IntVar(&c.port, "port", 10000, "Listen port")
 	f.BoolVar(&c.udp, "udp", false, "Use UDP")
 	f.StringVar(&c.location, "relative-location", "right", "Relative location of this client to the server screen")
+
 	return cmd
 }
 
@@ -57,9 +61,14 @@ func (c *clientCmd) client(cmd *cobra.Command, args []string) error {
 	if err != nil {
 		return err
 	}
-	s.Log.Level = log.DebugLevel
 	s.InternalIPSubnet = "192.168.1"
 	s.ScrollOnly = c.scrollOnly
+
+	lvl, err := log.ParseLevel(c.rArgs.logLevel)
+	if err != nil {
+		return err
+	}
+	s.Log.Level = lvl
 
 	grpcServer := grpc.NewServer()
 	clientpb.RegisterClientServer(grpcServer, s)
@@ -68,7 +77,6 @@ func (c *clientCmd) client(cmd *cobra.Command, args []string) error {
 	signal.Notify(ch, os.Interrupt)
 	go func() {
 		<-ch
-		s.Log.Info("Shutting down client")
 		grpcServer.GracefulStop()
 	}()
 
@@ -80,11 +88,11 @@ func (c *clientCmd) client(cmd *cobra.Command, args []string) error {
 	}
 
 	if err := s.ConnectServer(ctx, c.server, loc); err != nil {
-		return err
+		return fmt.Errorf("failed to connect to server: %w", err)
 	}
 
 	if err := grpcServer.Serve(l); err != nil {
-		panic(err)
+		return fmt.Errorf("failed to start gRPC server: %w", err)
 	}
 
 	return nil
